@@ -1468,10 +1468,8 @@ let currentLang = localStorage.getItem?.('pl_lang') || 'fa';
 try{ currentLang = 'fa'; }catch(e){}
 
 function tr(key){
-  const parts = key.split('.');
-  let obj = T[currentLang];
-  for(const p of parts){ obj = obj?.[p]; }
-  return obj ?? key;
+  const val = T[currentLang][key];
+  return (typeof val === 'string') ? val : key;
 }
 
 function applyTranslations(){
